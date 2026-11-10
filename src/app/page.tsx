@@ -10,10 +10,12 @@ import { Theme } from "@/components/sections/Theme";
 import { Ticker } from "@/components/sections/Ticker";
 import { Verses } from "@/components/sections/Verses";
 import { Visit } from "@/components/sections/Visit";
+import { JsonLd } from "@/components/seo/JsonLd";
 
 export default function Home() {
   return (
     <>
+      <JsonLd />
       <Nav />
       <main>
         <Hero />

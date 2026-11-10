@@ -14,12 +14,20 @@ export const fest = {
   tagline: "North Bengal's biggest socio-cultural fest",
   college: "Jalpaiguri Government Engineering College",
   collegeShort: "JGEC",
+  /**
+   * Canonical address of the site (the domain that does NOT redirect).
+   * Vercel's NEXT_PUBLIC_SITE_URL env var overrides it.
+   */
+  siteUrl: "https://www.jeclat.in",
   /** Countdown target (IST) */
   startsAt: "2027-04-09T10:00:00+05:30",
+  /** Used for search-engine event data */
+  endsAt: "2027-04-11T23:00:00+05:30",
   dateLabel: "9 · 10 · 11 Apr 2027",
   dateRange: "9–11 Apr 2027",
   venue: "JGEC campus, Jalpaiguri",
   address: ["Jalpaiguri Government Engineering College", "Jalpaiguri, West Bengal 735102"],
+  postal: { locality: "Jalpaiguri", region: "West Bengal", postalCode: "735102", country: "IN" },
   heroLede:
     "North Bengal's biggest socio-cultural fest. Three nights of Desi hip-hop, street theatre, cyphers and crew battles.",
 

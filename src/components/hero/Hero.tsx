@@ -87,11 +87,11 @@ export function Hero() {
           <Countdown target={fest.startsAt} />
         </div>
 
-        <h1 className={styles.word} aria-label={`${fest.name} ${fest.year}`}>
+        {/* visible: the big wordmark; read by search engines + screen readers: the full name */}
+        <h1 className={styles.word}>
           {fest.name}
-          <span className={styles.yr} aria-hidden="true">
-            {fest.shortYear}
-          </span>
+          <span className={styles.yr}>{fest.shortYear}</span>
+          <span className="sr-only">{`, ${fest.tagline} at ${fest.college}`}</span>
         </h1>
       </div>
     </section>

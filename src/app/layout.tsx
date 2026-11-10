@@ -4,6 +4,7 @@ import "lenis/dist/lenis.css";
 import "./globals.css";
 import { Providers } from "@/components/providers/Providers";
 import { fest } from "@/data/fest";
+import { seo, SITE_URL } from "@/lib/site";
 
 // Big Shoulders' optical-size axis picks the tall display cut automatically at large sizes.
 const display = Big_Shoulders({
@@ -19,15 +20,36 @@ const body = Familjen_Grotesk({ subsets: ["latin"], variable: "--font-body", dis
 const mono = Martian_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
 const bangla = Galada({ subsets: ["bengali"], weight: "400", variable: "--font-bangla", display: "swap", preload: false });
 
-const title = `${fest.name} ${fest.year} · ${fest.theme.title}: ${fest.theme.subtitle}`;
-const description = `${fest.tagline}. ${fest.dateRange} at ${fest.college}.`;
-
+// The share image itself comes from app/opengraph-image.tsx; Next adds og:image / twitter:image for it.
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"),
-  title: { default: title, template: `%s · ${fest.name} ${fest.year}` },
-  description,
-  openGraph: { title, description, type: "website", locale: "en_IN", siteName: `${fest.name} ${fest.year}` },
-  twitter: { card: "summary_large_image", title, description },
+  metadataBase: new URL(SITE_URL),
+  title: { default: seo.title, template: `%s | ${seo.name}` },
+  description: seo.description,
+  applicationName: seo.name,
+  keywords: seo.keywords,
+  authors: [{ name: `${fest.name} organising committee, ${fest.collegeShort}` }],
+  creator: `${fest.name}, ${fest.college}`,
+  publisher: fest.college,
+  category: "event",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "/",
+    siteName: seo.name,
+    title: seo.socialTitle,
+    description: seo.description,
+    locale: "en_IN",
+  },
+  twitter: { card: "summary_large_image", title: seo.socialTitle, description: seo.description },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1, "max-video-preview": -1 },
+  },
+  // Paste the code from Google Search Console into this Vercel env var to verify ownership.
+  verification: process.env.GOOGLE_SITE_VERIFICATION ? { google: process.env.GOOGLE_SITE_VERIFICATION } : undefined,
+  formatDetection: { telephone: false, email: false, address: false },
+  appleWebApp: { title: fest.name, statusBarStyle: "black-translucent" },
 };
 
 export const viewport: Viewport = {
@@ -38,7 +60,7 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${display.variable} ${body.variable} ${mono.variable} ${bangla.variable}`}>
+    <html lang="en-IN" className={`${display.variable} ${body.variable} ${mono.variable} ${bangla.variable}`}>
       <body>
         <Providers>{children}</Providers>
         <div className="grain" aria-hidden="true" />
