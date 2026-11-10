@@ -1,0 +1,85 @@
+.theme { padding-top: clamp(120px, 14vw, 200px); }
+
+.title {
+  position: relative;
+  margin-bottom: clamp(48px, 7vw, 96px);
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(3.4rem, 11vw, 11rem);
+  line-height: 0.8;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+.l1 { display: block; color: var(--haldi); }
+.l2 { display: block; color: var(--paper); }
+.tag {
+  position: absolute;
+  right: 1%;
+  top: -0.28em;
+  font-family: var(--f-bangla);
+  font-weight: 400;
+  font-size: 0.58em;
+  line-height: 1;
+  text-transform: none;
+  color: var(--blood);
+  transform: rotate(-9deg);
+  pointer-events: none;
+}
+
+.cols {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 6fr);
+  gap: clamp(32px, 6vw, 104px);
+  align-items: start;
+}
+.copy { display: grid; gap: 1.2em; }
+.copy p { max-width: 56ch; font-size: var(--t-lede); line-height: 1.6; color: var(--smoke); }
+.copy p:first-child { color: var(--paper); }
+
+.quote {
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(2.3rem, 5.2vw, 5rem);
+  line-height: 0.92;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--haldi);
+}
+.w { display: inline-block; }
+
+.stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  margin: clamp(64px, 9vw, 128px) 0 0;
+  border-top: 1px solid var(--rule);
+}
+.stat {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-end;
+  gap: 8px;
+  min-width: 0;
+  padding: 24px 20px 0 0;
+  border-right: 1px solid var(--rule);
+}
+.stat + .stat { padding-left: 20px; }
+.stat:last-child { border-right: 0; }
+.stat dd {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(3rem, 6.5vw, 6rem);
+  line-height: 0.85;
+  color: var(--haldi);
+  font-variant-numeric: tabular-nums;
+}
+.stat dt { max-width: 22ch; font-size: var(--t-small); color: var(--smoke); }
+.note { margin-top: 20px; color: var(--smoke); }
+
+@media (max-width: 860px) {
+  .cols { grid-template-columns: minmax(0, 1fr); }
+  .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stat:nth-child(2) { border-right: 0; }
+  .stat:nth-child(3) { padding-left: 0; }
+  .stat:nth-child(n + 3) { margin-top: 24px; border-top: 1px solid var(--rule); }
+}

@@ -1,0 +1,25 @@
+.clip { position: relative; z-index: 2; overflow-x: clip; margin-top: -34px; }
+.ticker {
+  position: relative;
+  margin: 0 -5vw;
+  padding-block: 12px;
+  overflow: hidden;
+  transform: rotate(-2.2deg);
+  background: var(--haldi);
+  color: var(--ink);
+  border-block: 2px solid var(--ink);
+}
+.track {
+  display: flex;
+  width: max-content;
+  white-space: nowrap;
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(1.6rem, 3.2vw, 2.7rem);
+  line-height: 1;
+  text-transform: uppercase;
+  will-change: transform;
+}
+.track > span { padding-right: 0.4em; }
+.track :global(.bn) { color: var(--blood); }
+.sl { padding-inline: 0.25em; font-style: normal; color: var(--blood); }

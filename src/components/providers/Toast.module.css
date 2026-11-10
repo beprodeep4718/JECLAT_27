@@ -1,0 +1,22 @@
+.region {
+  position: fixed;
+  left: 50%;
+  bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  z-index: 75;
+  transform: translateX(-50%);
+  width: max-content;
+  max-width: min(92vw, 460px);
+  pointer-events: none;
+}
+
+.toast {
+  padding: 14px 18px;
+  background: var(--haldi);
+  color: var(--ink);
+  font-family: var(--f-mono);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  line-height: 1.5;
+  box-shadow: 5px 5px 0 var(--blood);
+}

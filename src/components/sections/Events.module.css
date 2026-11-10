@@ -1,0 +1,114 @@
+.events { padding-block: 0; overflow-x: clip; }
+.pin {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: clamp(28px, 4vw, 48px);
+  padding-block: clamp(80px, 9vw, 120px);
+}
+.pin :global(.sec-head) { margin-bottom: 0; }
+
+.railWrap { overflow: visible; }
+.rail {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  padding-left: max(var(--gutter), env(safe-area-inset-left, 0px));
+  padding-right: max(var(--gutter), env(safe-area-inset-right, 0px));
+}
+
+.card {
+  position: relative;
+  flex: 0 0 clamp(280px, 25vw, 350px);
+  min-height: clamp(400px, 54vh, 480px);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  overflow: hidden;
+  background: var(--night-2);
+  border: 1.5px solid var(--rule);
+  transition: background-color 0.25s, border-color 0.25s;
+}
+.card::after {
+  content: attr(data-glyph);
+  position: absolute;
+  right: -0.06em;
+  top: -0.2em;
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: 11rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--rule);
+  pointer-events: none;
+  transition: -webkit-text-stroke-color 0.25s;
+}
+.card:hover { background: var(--blood); border-color: var(--blood); }
+.card:hover::after { -webkit-text-stroke-color: color-mix(in srgb, var(--haldi) 50%, transparent); }
+.card > * { position: relative; z-index: 1; }
+
+.cardTop {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--smoke);
+}
+.chip { color: var(--haldi); }
+.card h3 {
+  margin-top: auto;
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(2.6rem, 3.6vw, 3.5rem);
+  line-height: 0.86;
+  text-transform: uppercase;
+  text-wrap: balance;
+  color: var(--haldi);
+}
+.card p { margin: 12px 0 20px; font-size: 0.98rem; line-height: 1.5; color: var(--smoke); }
+.card:hover p,
+.card:hover .cardTop,
+.card:hover dt { color: var(--paper); }
+.card dl {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 0 0 20px;
+  padding-top: 14px;
+  border-top: 1px solid var(--rule);
+}
+.card dt {
+  font-family: var(--f-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--smoke);
+}
+.card dd {
+  margin: 2px 0 0;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: 1.55rem;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+.card :global(.btn) { align-self: flex-start; box-shadow: 3px 3px 0 var(--ink); }
+
+.progress { height: 2px; background: var(--rule); }
+.progress span { display: block; height: 100%; background: var(--haldi); transform-origin: left; transform: scaleX(0); }
+.hint { display: flex; justify-content: space-between; align-items: center; gap: 16px; margin-top: 16px; color: var(--smoke); }
+
+@media (max-width: 899px) {
+  .railWrap {
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .railWrap::-webkit-scrollbar { display: none; }
+  .card { flex-basis: min(82vw, 340px); scroll-snap-align: start; scroll-margin-left: var(--gutter); }
+}

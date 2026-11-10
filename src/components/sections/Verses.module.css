@@ -1,0 +1,107 @@
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 28px;
+  border: 2px solid var(--ink);
+}
+.tab {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  grid-template-rows: auto auto;
+  column-gap: 16px;
+  row-gap: 4px;
+  align-items: center;
+  padding: 18px 20px;
+  border: 0;
+  border-right: 2px solid var(--ink);
+  background: transparent;
+  color: var(--ink);
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s, color 0.2s;
+}
+.tab:last-child { border-right: 0; }
+.tab:hover { background: color-mix(in srgb, var(--ink) 7%, transparent); }
+.numeral { grid-row: 1 / 3; font-family: var(--f-bangla); font-size: 3.4rem; line-height: 0.9; color: var(--blood); }
+.tabName {
+  font-family: var(--f-display);
+  font-weight: 900;
+  font-size: clamp(1.5rem, 2.6vw, 2.2rem);
+  line-height: 0.95;
+  text-transform: uppercase;
+}
+.tabSub {
+  font-family: var(--f-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--smoke-ink);
+}
+.tab[aria-selected="true"] { background: var(--ink); color: var(--paper); }
+.tab[aria-selected="true"] .numeral { color: var(--haldi); }
+.tab[aria-selected="true"] .tabSub { color: var(--smoke); }
+
+.blurb {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+.blurb p { max-width: 56ch; font-size: var(--t-lede); }
+.blurb :global(.mono) { color: var(--smoke-ink); }
+
+.tracklist { border-top: 2px solid var(--ink); }
+.track {
+  display: grid;
+  grid-template-columns: 3rem 4.6rem minmax(0, 1fr) minmax(0, 14rem) 8.6rem;
+  grid-template-areas: "pos time name venue cat";
+  gap: 18px;
+  align-items: center;
+  padding: 18px 12px;
+  border-bottom: 1px solid var(--rule-ink);
+  transition: background-color 0.2s, color 0.2s;
+}
+.track > * { min-width: 0; }
+.pos { grid-area: pos; font-family: var(--f-mono); font-size: 0.76rem; font-weight: 700; color: var(--blood); }
+.time { grid-area: time; font-family: var(--f-mono); font-size: 0.95rem; font-weight: 600; font-variant-numeric: tabular-nums; }
+.name {
+  grid-area: name;
+  font-family: var(--f-display);
+  font-weight: 800;
+  font-size: clamp(1.4rem, 2.4vw, 2.05rem);
+  line-height: 1;
+  text-transform: uppercase;
+}
+.venue { grid-area: venue; font-size: 0.95rem; color: var(--smoke-ink); }
+.cat {
+  grid-area: cat;
+  justify-self: end;
+  padding: 6px 9px;
+  border: 1.5px solid currentColor;
+  font-family: var(--f-mono);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+.track:hover { background: var(--ink); color: var(--paper); }
+.track:hover .venue { color: var(--smoke); }
+.track:hover .pos { color: var(--haldi); }
+.night .name { color: var(--blood); }
+.night:hover .name { color: var(--haldi); }
+.night .cat { background: var(--blood); border-color: var(--blood); color: var(--paper); }
+
+@media (max-width: 760px) {
+  .tab { grid-template-columns: minmax(0, 1fr); padding: 14px 12px; }
+  .numeral { grid-row: auto; font-size: 2.4rem; }
+  .tabSub { font-size: 0.56rem; }
+  .track {
+    grid-template-columns: 2.4rem minmax(0, 1fr) auto;
+    grid-template-areas: "pos time cat" "pos name name" "pos venue venue";
+    row-gap: 6px;
+    padding: 16px 6px;
+  }
+}
